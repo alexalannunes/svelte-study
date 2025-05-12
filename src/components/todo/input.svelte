@@ -1,12 +1,12 @@
 <script lang="ts">
   // your script goes here
-  export let onSubmit = (value: string) => {};
-  let value = "";
+  let { onSubmit } = $props<{ onSubmit: (value: string) => void }>();
+  let value = $state("");
 </script>
 
 <!-- markup (zero or more items) goes here -->
 <form
-  on:submit={(e) => {
+  onsubmit={(e) => {
     e.preventDefault();
     onSubmit(value);
     value = "";

@@ -1,8 +1,10 @@
 <script lang="ts">
   import type { ITodo } from "../../model/todos";
 
-  export let list: ITodo[] = [];
-  export let onToggle = (id: number) => {};
+  let { list = [], onToggle = () => {} } = $props<{
+    list: ITodo[];
+    onToggle: (id: number) => void;
+  }>();
 </script>
 
 <!-- markup (zero or more items) goes here -->
@@ -11,7 +13,7 @@
     <li data-id={todo.id} class:completed={todo.completed}>
       <input
         type="checkbox"
-        on:change={() => {
+        onchange={() => {
           onToggle(todo.id);
         }}
         name={`item-${todo.id}`}

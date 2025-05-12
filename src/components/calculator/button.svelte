@@ -1,16 +1,18 @@
 <script lang="ts">
-  export let value: string;
-  export let isOperator = false;
-  export let isHighlight = false;
-  export let isFull = false;
-  export let onClick = (value: string) => {};
+  let { onClick, value, isOperator, isHighlight, isFull } = $props<{
+    onClick?: (value: string) => void;
+    value: string;
+    isOperator?: boolean;
+    isHighlight?: boolean;
+    isFull?: boolean;
+  }>();
 </script>
 
 <button
   class:isOperator
   class:isHighlight
   class:isFull
-  on:click={() => onClick(value)}
+  onclick={() => onClick(value)}
 >
   {value}
 </button>

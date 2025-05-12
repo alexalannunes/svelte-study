@@ -1,15 +1,15 @@
 <script lang="ts">
-  let open = false;
-  let index = -1;
-  let value = "";
+  let open = $state(false);
+  let index = $state(-1);
+  let value = $state("");
 
   const list = ["alex", "alan", "nunes"];
 
-  $: filteredList = list.filter((item) =>
-    item.toLowerCase().includes(value.toLowerCase()),
+  const filteredList = $derived(
+    list.filter((item) => item.toLowerCase().includes(value.toLowerCase())),
   );
 
-  $: filteredListLength = filteredList.length;
+  const filteredListLength = $derived(filteredList.length);
 </script>
 
 <!-- markup (zero or more items) goes here -->
@@ -18,10 +18,10 @@
     type="text"
     placeholder="autocomplete"
     bind:value
-    on:focus={() => (open = true)}
-    on:blur={() => (open = false)}
-    on:input={() => (index = -1)}
-    on:keydown={(e) => {
+    onfocus={() => (open = true)}
+    onblur={() => (open = false)}
+    oninput={() => (index = -1)}
+    onkeydown={(e) => {
       if (e.key === "Enter") {
         value = filteredList[index];
         open = false;
@@ -51,7 +51,7 @@
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <div
       class="content"
-      on:mousedown={(e) => {
+      onmousedown={(e) => {
         e.preventDefault();
       }}
     >

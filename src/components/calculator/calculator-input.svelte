@@ -1,5 +1,5 @@
-<script>
-  export let value = "0";
+<script lang="ts">
+  let { value } = $props<{ value: string }>();
 </script>
 
 <input type="text" readonly {value} />

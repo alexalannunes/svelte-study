@@ -1,10 +1,12 @@
 <script lang="ts">
-  export let onFilter = (filter: "ALL" | "COMPLETED" | "PENDING") => {};
+  let { onFilter } = $props<{
+    onFilter: (filter: "ALL" | "COMPLETED" | "PENDING") => void;
+  }>();
 </script>
 
-<button on:click={() => onFilter("ALL")}>all</button>
-<button on:click={() => onFilter("COMPLETED")}>completed</button>
-<button on:click={() => onFilter("PENDING")}>pending</button>
+<button onclick={() => onFilter("ALL")}>all</button>
+<button onclick={() => onFilter("COMPLETED")}>completed</button>
+<button onclick={() => onFilter("PENDING")}>pending</button>
 
 <style>
   /* your styles go here */

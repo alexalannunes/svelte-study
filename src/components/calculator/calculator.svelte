@@ -5,7 +5,7 @@
   import CalculatorInput from "./calculator-input.svelte";
   import CalculatorRow from "./calculator-row.svelte";
 
-  let calculatorValue = new CalculatorModel();
+  let calculatorValue = $state(new CalculatorModel());
 
   function numberTyped(num: string) {
     calculatorValue = calculatorValue.numberTyped(num);
