@@ -28,6 +28,7 @@
       }
       if (e.key === "ArrowDown") {
         e.preventDefault();
+        if (!open) open = true; // reopen if arrow down
         if (index === filteredListLength - 1) {
           index = 0;
         } else {
@@ -57,7 +58,7 @@
     >
       {#if filteredListLength}
         {#each filteredList as item, i}
-          <div class:focus={index === i}>{item}</div>
+          <button class:focus={index === i}>{item}</button>
         {/each}
       {/if}
 
@@ -73,6 +74,9 @@
     position: relative;
   }
   .content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
     position: absolute;
     width: 100%;
     padding: 4px;
